@@ -2,12 +2,51 @@
 *
 * CSCI 305 - ML Programming Lab
 *
-* <firstname> <lastname>
-* <email-address>
+* Bryan Plant
+* bryanplant@gmail.com
 *
 ***************************************************************)
 
-(* Define your data type and functions here *)
+(* fixes problem where output is truncated with a '#' *)
+Control.Print.printDepth := 1024;
+
+(* warmup function *)
+fun f [] = [] (* a *)
+  | f (x::xs) = (x + 1) :: (f xs) (* b *)
+
+(* datatype with two different types: Set and Empty,
+   Set is of type 'element * 'element set *)
+datatype 'element set = Empty | Set of 'element * 'element set;
+
+(* returns whether element e is part of the set *)
+fun isMember e Empty = false
+  | isMember e (Set (x,xs)) = e = x orelse isMember e xs;
+
+fun isSet Empty = true
+  | isSet (Set (x,xs)) = if (isMember x xs) then false
+                          else isSet xs;
+
+(* converts a given list into a set without duplicates *)
+fun list2Set [] = Empty
+  | list2Set (x::xs) =
+      let fun helper [] = Empty (* builds a set with duplicates *)
+            | helper (x::xs) = Set(x, helper (xs))
+      in
+        (* if x is later in the set don't include x in the set and recurse *)
+        if isMember x (helper(xs)) then list2Set(xs)
+                      (* otherwise include x and recurse*)
+                       else Set(x, list2Set(xs))
+      end
+
+(* returns the set representing the mathematical union of 2 sets *)
+fun union Empty set2 = set2
+  | union (Set (x,xs)) set2 = if isMember x set2 then union xs set2
+                              else union xs (Set (x, set2));
+
+(* returns the set representing the mathematical intersection of 2 sets *)
+fun intersect Empty set2 = Empty
+  | intersect (Set (x,xs)) set2 = if isMember x set2 then Set (x, (intersect xs set2))
+                                  else intersect xs set2;
 
 (* Simple function to stringify the contents of a Set of characters *)
 fun stringifyCharSet Empty = ""
@@ -37,7 +76,7 @@ list2Set [6, 2, 2];
 list2Set ["x", "y", "z", "x"];
 
 (* Question 1 *)
-f [3, 1, 4, 1, 5, 9]
+f [3, 1, 4, 1, 5, 9];
 
 (* Question 5 *)
 val quest5 = isMember "one" (list2Set ["1", "2", "3", "4"]);
@@ -56,3 +95,5 @@ print_str (union (list2Set ["green", "eggs", "and"]) (list2Set ["ham"]));
 (* Question 10 *)
 print "\nQuestion 10: ";
 print_str (intersect (list2Set ["stewed", "tomatoes", "and", "macaroni"]) (list2Set ["macaroni", "and", "cheese"]));
+
+OS.Process.exit(OS.Process.success);
