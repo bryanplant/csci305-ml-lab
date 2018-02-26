@@ -96,4 +96,5 @@ print_str (union (list2Set ["green", "eggs", "and"]) (list2Set ["ham"]));
 print "\nQuestion 10: ";
 print_str (intersect (list2Set ["stewed", "tomatoes", "and", "macaroni"]) (list2Set ["macaroni", "and", "cheese"]));
 
+(* exit SML *)
 OS.Process.exit(OS.Process.success);
