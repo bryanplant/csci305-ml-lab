@@ -18,15 +18,16 @@ fun f [] = [] (* a *)
    Set is of type 'element * 'element set *)
 datatype 'element set = Empty | Set of 'element * 'element set;
 
-(* returns whether element e is part of the set *)
+(* returns whether element e is part of the given Set *)
 fun isMember e Empty = false
   | isMember e (Set (x,xs)) = e = x orelse isMember e xs;
 
+(* returns whether the given value is a Set *)
 fun isSet Empty = true
   | isSet (Set (x,xs)) = if (isMember x xs) then false
                           else isSet xs;
 
-(* converts a given list into a set without duplicates *)
+(* converts a given list into a Set without duplicates *)
 fun list2Set [] = Empty
   | list2Set (x::xs) =
       let fun helper [] = Empty (* builds a set with duplicates *)

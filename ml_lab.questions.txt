@@ -1,34 +1,44 @@
-<firstname> <lastname>
+Bryan Plant
 CSCI 305
 Spring 2018
 Lab Questions
 =======================
-1.
+1. val it = [4,2,5,2,6,10] : int list
 
-2.
+2. f iterates through a list and adds 1 to each element
 
-3.
+3. this line declares a function f and matches an empty list and returns
+   an empty list
 
-4.
+4. this line matches a list and recursively adds 1 to the head and concatenates
+   them together
 
-5.
+5. false
 
-6.
+6. tail recursion
 
-7.
+7. Set ("best",Set ("times,",Set ("it",Set ("was",Set ("the",Set ("worst",Set ("of",Set ("times",Empty))))))))
 
-8.
+8. In tail recursion, all of the calculations are performed first and then the
+   recursive call is executed. This means that instead of allocating a stack for
+   each call, the compiler can reuse the current stack frame. This means that
+   tail recursion can essentially be optimized to be an iterative process
+   which requires much less memory than typical recursion.
 
-9.
+9. { and eggs green ham }
 
-10.
+10. { and macaroni }
 
-11.
+11. ML forces you to think differently and is helpful in better understanding
+    recursion.
 
-12.
+12. I don't like that the syntax is different from every other language I've
+    used.
 
-13.
+13. I started to enjoy the lab once I became confident with the syntax and
+    general structure of ML. It was really frustrating initially but it was
+    still interesting to learn a new language.
 
-14.
+14. 6 hours
 
-15.
+15. No.
